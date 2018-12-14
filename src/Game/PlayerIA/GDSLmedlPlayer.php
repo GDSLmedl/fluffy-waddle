@@ -61,7 +61,7 @@ class GDSLmedlPlayer extends Player
                 return parent::foeChoice();
         else // I am losing
             if ($friendStats > 70)
-                return parent::foeChoice();
+                return parent::friendChoice();
             else
                 return $oppChoice === parent::foeChoice() ? parent::foeChoice() : parent::friendChoice();
     }
