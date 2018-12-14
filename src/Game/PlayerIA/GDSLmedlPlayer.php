@@ -41,13 +41,22 @@ class GDSLmedlPlayer extends Player
         // How can i display the result of each round ? $this->prettyDisplay()
         // -------------------------------------    -----------------------------------------------------
 
-        //$this->prettyDisplay();
-
         $oppChoice = $this->result->getLastChoiceFor($this->opponentSide);
 
+        $oppStats = $this->result->getStatsFor($this->opponentSide);
+        $myStats = $this->result->getStatsFor($this->mySide);
+
         if ($oppChoice === 0)
+            return parent::friendChoice();
+
+
+        if ($oppStats['foe'] >= $oppStats['friend']) {
             return parent::foeChoice();
-        return $oppChoice === parent::foeChoice() ? parent::foeChoice() : parent::friendChoice();
+        }
+        else {
+            return parent::friendChoice();
+        }
+
     }
  
 };
