@@ -49,21 +49,13 @@ class GDSLmedlPlayer extends Player
         if ($oppChoice === 0)
             return parent::friendChoice();
 
-        if ($oppStats['name'] === 'Paultato')
-            return parent::foeChoice();
-        else if ($oppStats['name'] === 'vcollette')
-            return parent::foeChoice();
-        else if ($oppStats['name'] === 'mattiashell')
-            return parent::foeChoice();
-        else if ($oppStats['name'] === 'Friend')
-            return parent::foeChoice();
-        else {
-            if ($oppStats['foe'] >= $oppStats['friend']) {
-                return parent::foeChoice();
-            } else {
-                return parent::friendChoice();
-            }
-        }
+        $foeStats = $oppStats['foe'] / ($oppStats['foe'] + $oppStats['friend']) * 100;
+        $friendStats = $oppStats['friend'] / ($oppStats['foe'] + $oppStats['friend']) * 100;
+
+        if ($myStats['score'] >= $oppStats['score'])
+            return $foeStats > 30 ? parent::foeChoice() : parent::friendChoice();
+        else
+            return $friendStats > 70 ? parent::friendChoice() : parent::foeChoice();
     }
  
 };
