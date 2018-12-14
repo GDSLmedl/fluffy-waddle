@@ -46,16 +46,24 @@ class GDSLmedlPlayer extends Player
         $oppStats = $this->result->getStatsFor($this->opponentSide);
         $myStats = $this->result->getStatsFor($this->mySide);
 
+        // Be friendly at start
         if ($oppChoice === 0)
             return parent::friendChoice();
 
         $foeStats = $oppStats['foe'] / ($oppStats['foe'] + $oppStats['friend']) * 100;
         $friendStats = $oppStats['friend'] / ($oppStats['foe'] + $oppStats['friend']) * 100;
 
+        // If I win
         if ($myStats['score'] >= $oppStats['score'])
-            return $foeStats > 30 ? parent::foeChoice() : parent::friendChoice();
-        else
-            return $friendStats > 70 ? parent::friendChoice() : parent::foeChoice();
+            if ($foeStats > 30)
+                return $oppChoice === parent::foeChoice() ? parent::foeChoice() : parent::friendChoice();
+            else
+                return parent::foeChoice();
+        else // I am losing
+            if ($friendStats > 70)
+                return parent::foeChoice();
+            else
+                return $oppChoice === parent::foeChoice() ? parent::foeChoice() : parent::friendChoice();
     }
  
 };
