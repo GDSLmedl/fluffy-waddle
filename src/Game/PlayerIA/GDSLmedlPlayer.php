@@ -5,11 +5,11 @@ namespace Hackathon\PlayerIA;
 use Hackathon\Game\Result;
 
 /**
- * Class GdslmedlPlayer
+ * Class GDSLmedlPlayer
  * @package Hackathon\PlayerIA
  * @author Max-Emilien Dauvert-Latre
  */
-class GdslmedlPlayer extends Player
+class GDSLmedlPlayer extends Player
 {
     protected $mySide;
     protected $opponentSide;
@@ -44,9 +44,9 @@ class GdslmedlPlayer extends Player
         $this->prettyDisplay();
 
         $oppChoice = $this->result->getLastChoiceFor($this->opponentSide);
-        
+
         if ($oppChoice === 0)
-            return parent::friendChoice();
+            return parent::foeChoice();
         return $oppChoice === parent::foeChoice() ? parent::foeChoice() : parent::friendChoice();
     }
  
