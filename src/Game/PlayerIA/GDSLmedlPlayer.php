@@ -41,7 +41,7 @@ class GDSLmedlPlayer extends Player
         // How can i display the result of each round ? $this->prettyDisplay()
         // -------------------------------------    -----------------------------------------------------
 
-        $this->prettyDisplay();
+        //$this->prettyDisplay();
 
         $oppChoice = $this->result->getLastChoiceFor($this->opponentSide);
 
